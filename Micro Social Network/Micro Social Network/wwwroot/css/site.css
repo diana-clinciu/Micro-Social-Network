@@ -1,0 +1,51 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+#prf_picture {
+    border-radius: 50%;
+    text-align:center;
+    width: 15rem;
+    height: 15rem;
+    margin: auto;
+}
+
+span.prf_name {
+    margin: 1px !important;
+    text-align: center;
+    max-width: 25rem;
+}
+
+.navbar.bg-color {
+    background-color:#876445 !important;
+}
+
+btn-outline-success {
+    background-color: #876445 !important;
+}
+.btn-success {
+    background-color: #876445 !important;
+}

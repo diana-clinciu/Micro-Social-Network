@@ -1,0 +1,61 @@
+﻿@model Micro_Social_Network.Models.Group
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.msg != null)
+{
+    <div class="alert alert-info" role="alert">
+        @ViewBag.msg
+    </div>
+}
+
+
+<h2>Afisare Grupuri</h2>
+<br />
+
+<div class="d-flex justify-content-center">
+
+    <a class="btn btn-success" href="/Groups/New">Adauga grup</a>
+
+    <br />
+
+</div>
+
+<br />
+
+
+@foreach (var group in ViewBag.Groups)
+{
+    <div class="card">
+
+        <div class="card-body">
+
+            <div class="card-text">@group.Name</div>
+
+            <div class="d-flex justify-content-between flex-row mt-5">
+
+                <a class="btn btn-success" href="/Groups/Show/@group.Id">Afisare Grup</a>
+
+                @using (Html.BeginForm(actionName: "Join", controllerName: "Groups",
+               method: FormMethod.Post, routeValues: new { id = group.Id }))
+                {
+                    @if (!group.Users.Contains(ViewBag.curUser))
+                    {
+                        <button class="btn btn-success" type="submit">Alatura-te grupului</button>
+                    }
+
+                }
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br />
+    <br />
+}
+
+

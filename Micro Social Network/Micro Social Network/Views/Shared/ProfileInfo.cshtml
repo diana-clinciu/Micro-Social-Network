@@ -1,0 +1,36 @@
+﻿<div class="d-flex flex-row justify-content-around">
+
+    <div class="d-flex flex-column">
+        <img id="prf_picture" src="/images/hampster.jpg" />
+        <span class="prf_name">@Model.FirstName @Model.LastName</span>
+        <span class="prf_name"> @@ @Model.UserName </span>
+        <span class="prf_name">
+            @if (Model.Gender != null)
+            {
+                @: Gen: @Model.Gender |
+            }
+            @if (Model.BirthDate != null)
+            {
+                @: Data nasterii: @Model.BirthDate.ToString("dd/MM/yyyy") |
+            }
+            @if (Model.Email != null)
+            {
+                @: Email: @Model.Email |
+            }
+            @if (Model.PhoneNumber != null)
+            {
+                @: Telefon: @Model.PhoneNumber
+            }
+        </span>
+    </div>
+
+    <div class="d-flex flex-column justify-content-center">
+        <p>@Model.About</p>
+        @if (ViewBag.isAdmin || ViewBag.UserId == Model.Id)
+        {
+            <div> <a class="btn btn-sm btn-success" href="/Users/EditProfile/@Model.Id"> Editare profil </a> </div>
+        }
+
+    </div>
+
+</div>

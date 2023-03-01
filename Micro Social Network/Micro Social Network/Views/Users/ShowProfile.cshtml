@@ -1,0 +1,50 @@
+﻿@model Micro_Social_Network.Models.ApplicationUser
+
+
+<div class="card mt-3" style="height:100%; width: 100%;">
+
+    <div class="card-body d-flex justify-content-between flex-column">
+        @Html.Partial("ProfileInfo", Model)
+
+        <ul class="nav nav-pills mb-3 mx-4">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Postari</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Users/ShowFriends/@Model.Id">Prieteni</a>
+            </li>
+
+            @if (ViewBag.UserId == Model.Id)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/Users/ShowFriendRequests/@Model.Id">Cereri de prietenie</a>
+                </li>
+            }
+
+        </ul>
+
+        @foreach (var post in ViewBag.userPosts)
+        {
+            <div class="card mx-4">
+
+                <div class="card-body">
+
+                    <div class="card-text">@post.Content</div>
+
+                    <div class="d-flex justify-content-between flex-row mt-5">
+
+                        <a class="btn btn-success" href="/Posts/Show/@post.Id">Afisare postare</a>
+
+                        <span class="alert-success">@post.Date</span>
+                        <div>@post.User.UserName</div>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+

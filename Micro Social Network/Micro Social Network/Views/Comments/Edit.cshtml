@@ -1,0 +1,26 @@
+﻿@model Micro_Social_Network.Models.Comment
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editare comentariu</h2>
+<br />
+
+
+    @using (Html.BeginForm(actionName: "Edit", controllerName: "Comments", 
+    method: FormMethod.Post, routeValues: new {id = Model.Id}))
+    {
+    @Html.ValidationSummary(false, null, new {@class = "test-danger"} )
+
+    @Html.Label("Content","Continut Mesaj")
+
+    <br />
+
+    @Html.EditorFor(m => m.Content, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
+    <br />
+
+    <button class="btn  btn-primary" type="submit">Editeaza comentariul</button>
+    }
+
+

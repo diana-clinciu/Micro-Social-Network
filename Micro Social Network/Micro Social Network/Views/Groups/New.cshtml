@@ -1,0 +1,31 @@
+﻿@model Micro_Social_Network.Models.Group
+
+@{
+    ViewBag.Title = "New";
+}
+
+
+<h2>Adaugare Grup</h2>
+<br />
+
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Groups",
+        method: FormMethod.Post))
+{
+
+
+    @Html.ValidationSummary(false, null, new {@class = "test-danger"} )
+
+    @Html.Label("Name", "Numele Grupului")
+    <br />
+    @Html.TextArea("Name", null, new { @class = "form-control" })
+    <br />
+
+
+    @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+
+
+
+    <button class="btn btn-success" type="submit">Adauga grup</button>
+
+}

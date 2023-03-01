@@ -1,0 +1,65 @@
+﻿@model Micro_Social_Network.Models.ApplicationUser
+
+
+<div class="card mt-3" style="height:100%; width: 100%;">
+
+    <div class="card-body d-flex justify-content-between flex-column">
+
+        @Html.Partial("ProfileInfo", Model)
+
+        <ul class="nav nav-pills mb-3 mx-4">
+            <li class="nav-item">
+                <a class="nav-link" href="/Users/ShowProfile/@Model.Id">Postari</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Users/ShowFriends/@Model.Id">Prieteni</a>
+            </li>
+            @if (ViewBag.UserId == Model.Id)
+            {
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Users/ShowFriendRequests/@Model.Id">Cereri de prietenie</a>
+                </li>
+            }
+        </ul>
+
+        <div class="row mx-2">
+            @foreach (var user in ViewBag.usersSend)
+            {
+                <div class="col-4 mb-4">
+                    <div class="card" style="height:100%; width: 100%;">
+
+                        <div class="card-body d-flex justify-content-between flex-column">
+                            <div>
+                                <div class="card-body d-flex align-content-center flex-row">
+                                    <img class="img-fluid" src="~/images/hampster.jpg" style="width:60px; height:60px; border-radius:50%">
+                                    <a class="m-auto" href="/Users/ShowProfile/@user.Id">
+                                        <p class="mb-0"> @user.UserName </p>
+                                        <p class="mb-0"> @user.FirstName @user.LastName</p>
+                                    </a>
+                                </div>
+
+                                <form method="post" action="/FriendRequests/ProcessFriendRequest">
+                                    <input type="hidden" name="recieverId" value=@ViewBag.CurrentUserId />
+
+                                    <input type="hidden" name="senderId" value=@user.Id>
+
+                                    <label for="response">Alege raspunsul</label>
+                                    <select class="form-select" name ="response">
+                                        <option value="Accepted">Accepta</option>
+                                        <option value="Rejected">Respinge</option>
+                                    </select>
+                                    <button class="btn btn-success" type="submit">Trimite Raspuns</button>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+

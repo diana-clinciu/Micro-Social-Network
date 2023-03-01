@@ -1,0 +1,21 @@
+﻿@model Micro_Social_Network.Models.Group
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Groups",
+ method: FormMethod.Post, routeValues: new { id = Model.Id }))
+{
+
+    @Html.Label("Nume Grup")
+    @Html.EditorFor(m => m.Name, @Model.Name)
+    @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+
+    <br />
+
+    <br />
+    <br />
+
+    <button class="btn btn-success" type="submit">Modifica Post</button>
+
+}

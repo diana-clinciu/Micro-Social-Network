@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.msg != null)
+{
+    <div class="alert alert-info" role="alert">
+        @ViewBag.msg
+    </div>
+}
+
+
+<form method="GET" action="Users/ListUsers">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Cauta un prieten hampster!" name="search"
+               value="@ViewBag.SearchString">
+        <button class="btn btn-success" type="submit">Search</button>
+    </div>
+</form>
+
+@foreach (var post in ViewBag.Posts)
+{
+    <div class="card">
+
+        <div class="card-body">
+
+            <div class="card-text">@post.Content</div>
+
+            <div class="d-flex justify-content-between flex-row mt-5">
+
+                <a class="btn btn-success" href="/Posts/Show/@post.Id">Afisare postare</a>
+
+                <span class="card-text">@post.Date</span>
+                <div class="card-text">@post.User.UserName</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br />
+    <br />
+}
+
+

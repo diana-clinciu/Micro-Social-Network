@@ -1,0 +1,39 @@
+﻿@model Micro_Social_Network.Models.Post
+
+@{
+    ViewBag.Title = "New";
+}
+
+
+<h2>Adaugare postare</h2>
+<br />
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Posts",
+         method: FormMethod.Post))
+{
+
+
+    @Html.ValidationSummary(false, null, new {@class = "test-danger"} )
+
+    @Html.Label("Content", "Continut Postare")
+    <br />
+    @Html.TextArea("Content", null, new { @class = "form-control" })
+    <br />
+
+    
+    @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+
+
+    <br />
+
+    
+   
+    <label>Selectati grupul</label>
+    <div class="input-group mb-3">
+    @Html.DropDownListFor(m => m.GroupId, new SelectList(ViewBag.Groups, "Value", "Text"),
+    "Selectati grupul", new { @class = "form-select" })
+    </div>
+
+    <button class="btn btn-success" type="submit">Adauga postare</button>
+
+}

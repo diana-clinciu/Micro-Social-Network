@@ -1,0 +1,71 @@
+﻿@model Micro_Social_Network.Models.Group
+
+@{
+    ViewBag.Title = "ShowMembers";
+}
+
+
+<a class="btn btn-success" href="/Groups/Show/@Model.Id">Intoarce-te la feed-ul grupului</a>
+<form method="GET">
+    <div class="input-group mb-3">
+
+        <input type="text" class="form-control" placeholder=Search topics or keywords" name="search"
+               value="@ViewBag.SearchString">
+        @*<input type="hidden" value=@Model.Id>*@
+        <button class="btn btn-success" type="submit">Search</button>
+    </div>
+</form>
+
+<div class="row">
+    @foreach (var user in ViewBag.users)
+    {
+
+        <div class="col-4 mb-4">
+            <div class="card" style="height:100%; width: 100%;">
+
+                <div class="card-body d-flex align-content-center flex-row">
+                    <img class="img-fluid" src="~/images/hampster.jpg" style="width:60px; height:60px; border-radius:50%">
+                    <a class="m-auto" href="/Users/ShowProfile/@user.Id">
+                        <p class="mb-0"> @user.UserName </p>
+                        <p class="mb-0"> @user.FirstName @user.LastName</p>
+                    </a>
+                    @*
+                <form method="post" action="/FriendRequests/New" class="my-auto">
+                <input type="hidden" name="UserSendId" value="@ViewBag.CurrentUserId">
+                <input type="hidden" name="UserReceiveId" value="@user.Id">
+                <button class="btn btn-success" type="submit">Adauga ca prieten</button>
+                </form>
+                    *@
+
+                </div>
+
+            </div>
+        </div>
+    }
+
+</div>
+
+<br />
+<br />
+
+
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationBaseUrl=1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int i = 1; i <= ViewBag.lastPage; i++)
+            {
+                <li class="page-item"> <a class="page-link" href="@ViewBag.PaginationBaseUrl=@i">@(i)</a> </li>
+            }
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationBaseUrl=@(ViewBag.lastPage)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

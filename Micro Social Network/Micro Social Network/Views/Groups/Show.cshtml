@@ -1,0 +1,225 @@
+﻿@model Micro_Social_Network.Models.Group
+
+@{
+    ViewBag.Title = "Show";
+}
+
+
+<div class="d-flex justify-content-center">
+
+    <a class="btn btn-success" href="/Posts/Index/">Afisare postari</a>
+
+    <a class="btn btn-success" href="/Posts/New">Adauga postare</a>
+
+</div>
+
+<br />
+
+@*Prezentare nume*@
+<div class="card">
+
+    <div class="card-body">
+
+        <div class="card-text">@Model.Name</div>
+
+        <div class="d-flex justify-content-between flex-row mt-5">
+        </div>
+
+    </div>
+
+    <hr />
+
+    <div class="d-flex flex-row justify-content-between">
+
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn btn-success" href="/Groups/Edit/@Model.Id">Editeaza grup</a>
+        }
+
+        <a class="btn btn-success" href="/Groups/ShowMembers/@Model.Id">Afisare membrii grup</a>
+
+
+        @if (User.IsInRole("Admin"))
+        {
+            <form method="post" action="/Groups/Delete/@Model.Id">
+
+                <button class="btn btn-danger" type="submit">Sterge grup</button>
+
+            </form>
+        }
+
+    </div>
+
+</div>
+
+<br />
+<br />
+@if (Model.Posts.Count > 0)
+    @foreach (var post in Model.Posts)
+    {
+        <div class="card">
+
+            <div class="card-body">
+
+                <div class="card-text">@post.Content</div>
+
+                <div class="d-flex justify-content-between flex-row mt-5">
+
+                    <a class="btn btn-success" href="/Posts/Show/@post.Id">Afisare postare</a>
+
+                    <span class="card-text">@post.Date</span>
+                    <div class="card-text">@post.User.UserName</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <br />
+        <br />
+    }
+@* Afisare postari impreuna  cu comentarii + butoanele de editare si stergere *@
+@*
+@if(Model.Posts.Count > 0)
+@foreach (var post in Model.Posts)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+
+            <div class="col-md-8">
+
+               <div class="card-body">
+                    <div class="card-text">@post.User.UserName</div>
+                    <p>@post.Content</p>
+                    <small>@post.Date</small>
+
+                </div>
+                <br>
+
+                <div class="d-flex">
+
+                    <div>
+
+                        <a class="btn btn-outline-primary" href="/Posts/Edit/@post.Id"><i class="bi bi-pencil-square"></i>Editeaza Postare</a>
+
+                    </div>
+
+                    <div>
+
+                        <form method="post" action="/Posts/Delete/@post.Id">
+
+                            <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i>Sterge Postare</button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <br />
+
+
+                @* Afisare comentarii impreuna cu butoanele de editare si stergere *@
+@*
+                @if(post.Comments.Count>0)
+                @foreach (var comm in post.Comments)
+                {
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+
+                            <div class="col-md-8">
+
+                                <div>
+                                    <div class="card-text">@comm.User.UserName</div>
+                                    <p>@comm.Content</p>
+                                    <small>@comm.Date</small>
+
+                                </div>
+                                <br>
+
+                                <div class="d-flex">
+
+                                    <div>
+
+                                        <a class="btn btn-outline-primary" href="/Comments/Edit/@comm.Id"><i class="bi bi-pencil-square"></i>Editeaza</a>
+
+                                    </div>
+
+                                    <div>
+
+                                        <form method="post" action="/Comments/Delete/@comm.Id">
+
+                                            <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i>Sterge</button>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+                                <br />
+
+                            </div>
+
+                            <div class="col-md-2"></div>
+
+                        </div>
+
+                    </div>
+                }
+
+*@
+@* Afisarea formularului in care se poate adauga un comentariu *@
+@*
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-md-2"></div>
+
+                        <div class="col-md-8">
+
+                            <div class="card">
+
+                                <form method="post" action="/Posts/Show/@post.Id">
+
+                                    <div class="card-body">
+
+                                        <input type="hidden" name="PostId" value="@post.Id" />
+
+                                        <label>Continut comentariu</label>
+                                        <br />
+
+                                        <textarea class="form-control" name="Content"></textarea>
+                                        @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+
+                                        <br />
+
+                                        <button class="btn btn-success " type="submit">Adauga comentariul</button>
+
+                                    </div>
+
+                                </form>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-2"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-2"></div>
+
+        </div>
+
+    </div>
+}
+*@

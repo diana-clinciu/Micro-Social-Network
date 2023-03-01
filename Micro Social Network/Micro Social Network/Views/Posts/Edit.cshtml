@@ -1,0 +1,22 @@
+﻿@model Micro_Social_Network.Models.Post
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Posts",
+  method: FormMethod.Post, routeValues: new { id = Model.Id }))
+   {
+
+    @Html.Label("Continut Post")
+    @Html.EditorFor(m => m.Content,@Model.Content)
+    @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
+
+    <br />
+
+    <br /><br />
+
+    <button class="btn btn-success" type="submit">Modifica Post</button>
+
+   }

@@ -1,0 +1,97 @@
+﻿@model Micro_Social_Network.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+@using (Html.BeginForm(actionName: "EditProfile", controllerName: "Users",
+      method: FormMethod.Post, routeValues: new { id = @Model.Id }))
+{
+    @Html.Label("Visible", "Vizibilitate profil")
+    <br />
+
+    @Html.RadioButton("Visible", true) @:Public
+<br />
+    @Html.RadioButton("Visible", false) @:Privat
+<br />
+
+    @Html.ValidationMessageFor(m=>m.Visible, null, new { @class = "text-danger" })
+    <br />
+
+    <i class="bi bi-person"></i>
+    @Html.Label("UserName", "Nume utilizator", new { @class = "" })
+
+    <br />
+    @Html.EditorFor(m => m.UserName)
+
+    @Html.ValidationMessageFor(m=>m.UserName, null, new { @class = "text-danger" })
+    <br />
+
+    <i class="bi bi-envelope"></i>
+    @Html.Label("Email", "Email utilizator", new { @class = "" })
+
+    <br />
+    @Html.EditorFor(m => m.Email)
+
+    @Html.ValidationMessageFor(m=>m.Email, null, new { @class = "text-danger" })
+    <br />
+
+    <i class="bi bi-phone"></i>
+    @Html.Label("PhoneNumber", "Numar telefon")
+
+    <br />
+    @Html.EditorFor(m => m.PhoneNumber)
+
+    @Html.ValidationMessageFor(m=>m.PhoneNumber, null, new { @class = "text-danger" })
+    <br />
+
+    <i class="bi bi-person"></i>
+    @Html.Label("FirstName", "Prenume utilizator", new { @class = "" })
+
+    <br />
+    @Html.EditorFor(m => m.FirstName)
+
+    @Html.ValidationMessageFor(m=>m.FirstName, null, new { @class = "text-danger" })
+    <br />
+
+    <i class="bi bi-person"></i>
+    @Html.Label("LastName", "Nume utilizator", new { @class = "" })
+
+    <br />
+    @Html.EditorFor(m => m.LastName)
+
+    @Html.ValidationMessageFor(m=>m.LastName, null, new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("BirthDate", "Data nasterii", new { @class = "" })
+
+    <br />
+    @Html.EditorFor(m => m.BirthDate)
+
+    @Html.ValidationMessageFor(m=>m.BirthDate, null, new { @class = "text-danger" })
+    <br />
+        <br />
+    @Html.Label("Gender", "Gen", new { @class = "" })
+
+    <br />
+
+    @Html.RadioButton("Gender", "Femeie") @:Femeie
+<br />
+    @Html.RadioButton("Gender", "Barbat") @:Barbat
+<br />
+    <br />
+
+    @* descriere *@
+
+    @Html.Label("About", "Descriere", new { @class = "" })
+
+    @Html.TextArea("About", null, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m=>m.About, null, new { @class = "text-danger" })
+    <br />
+
+    @Html.ValidationMessageFor(m=>m.Gender, null, new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-success" type="submit">Editare user</button>
+}

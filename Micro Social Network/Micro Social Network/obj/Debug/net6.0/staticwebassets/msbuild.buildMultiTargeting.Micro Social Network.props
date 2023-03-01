@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Micro Social Network.props" />
+</Project>
